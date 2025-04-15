@@ -146,13 +146,12 @@ namespace _7oop
                 }
                 else if (double.TryParse(input.Replace('.', ','), out double value))
                 {
-                    
                     list.Add(value);
                 }
                 else if (string.IsNullOrWhiteSpace(input))
                 {
                     Console.Write("Продовжити введення? (+/-): ");
-                    string response = Console.ReadLine().ToLower();
+                    string response = Console.ReadLine();
                     if (response == "-")
                     {
                         inputTrigger = '-';
@@ -210,7 +209,7 @@ namespace _7oop
                 try
                 {
                     Console.Write("\nВведіть порогове значення для суми: ");
-                    if (double.TryParse(Console.ReadLine(), out double threshold))
+                    if (double.TryParse(Console.ReadLine().Replace('.', ','), out double threshold))
                     {
                         double sum = list.SumOfElementsGreaterThan(threshold);
                         Console.WriteLine($"Сума елементів більших за {threshold:F2}: {sum:F2}");
@@ -331,7 +330,9 @@ namespace _7oop
                     }
                     else
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine($"Елемента з індексом {index} не існує у даному списку.");
+                        Console.ResetColor();
                     }
                 }
                 catch (InvalidOperationException ex)
