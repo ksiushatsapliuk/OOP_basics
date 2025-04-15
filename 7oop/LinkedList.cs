@@ -48,7 +48,7 @@ namespace _7oop
             count++;
         }
 
-        // Функція індексації - отримання елемента за індексом
+        //індексатор
         public double this[int index]
         {
             get
@@ -164,7 +164,7 @@ namespace _7oop
             }
             if (!found)
             {
-                throw new InvalidOperationException("Жоден елемент не перевищує задане значення.");
+                throw new InvalidOperationException("Жоден елемент списку не перевищує задане значення.");
             }
 
             return sum;
@@ -200,7 +200,7 @@ namespace _7oop
                 return;
             }
 
-            // Особливий випадок для голови списку (позиція 0)
+            //випадок для голови списку (позиція 0)
             if (head != null)
             {
                 head = head.Next;
@@ -212,7 +212,7 @@ namespace _7oop
 
             while (current != null && current.Next != null)
             {
-                if (position % 2 == 1) // Якщо попередня позиція непарна, то наступна - парна
+                if (position % 2 == 1) //якщо попередня позиція непарна, то наступна - парна
                 {
                     current.Next = current.Next.Next;
                     count--;

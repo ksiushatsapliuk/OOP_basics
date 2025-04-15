@@ -65,10 +65,11 @@ namespace _7oop
             Console.WriteLine("6: переглянути активний список");
             Console.WriteLine("7: створити новий список");
             Console.WriteLine("8: обрати інший активний список");
+            Console.WriteLine("9: що таке список?");
             Console.WriteLine("ESC, щоб завершити");
             Console.ResetColor();
         }
-
+    
         public static void SwitchOptions(ConsoleKeyInfo keyInfo, LinkedList anylist)
         {
             if (char.IsDigit(keyInfo.KeyChar))
@@ -112,6 +113,10 @@ namespace _7oop
                     case 8:
                         Console.WriteLine("8: (Пере)Обрати активний список");
                         SelectList();
+                        break;
+                    case 9:
+                        Console.WriteLine("9: довідка: що таке список?");
+                        WhatIsLinkedList();
                         break;
 
                     default:
@@ -305,7 +310,7 @@ namespace _7oop
             {
                 try
                 {
-                    Console.Write("Введіть індекс елемента для отримання: ");
+                    Console.Write("\nВведіть індекс елемента для отримання: ");
                     if (int.TryParse(Console.ReadLine(), out int index) && index >= 0 && index < list.Count)
                     {
                         Console.WriteLine($"Елемент з індексом {index}: {list[index]}");
@@ -316,7 +321,7 @@ namespace _7oop
                         if (choice == "+")
                         {
                             Console.Write("Введіть нове значення для цього елемента: ");
-                            if (double.TryParse(Console.ReadLine(), out double changedValue))
+                            if (double.TryParse(Console.ReadLine().Replace('.', ','), out double changedValue))
                             {
                                 list[index] = changedValue;
                                 Console.WriteLine("Список після зміни елемента:");
@@ -345,14 +350,25 @@ namespace _7oop
                 RedMessageListIsEmpty();
             }
         }
-
         public static void Case6_DisplayList(LinkedList list)
         {
             BlueMessageCurrentList();
             Console.WriteLine($"\nВаш список \"{currentUser}\" містить:");
             list.PrintList();
         }
-
+        public static void WhatIsLinkedList()
+        {
+            Console.WriteLine("\nОдноспрямований (однозв'язний) список — це структура даних, яка \nскладається з послідовно пов’язаних вузлів (Node).");
+            Console.WriteLine("");
+            Console.WriteLine("    ┌───────────────┐     ┌───────────────┐     ┌───────────────┐ ");
+            Console.WriteLine("    │  Value = 10   │     │  Value = 20   │     │  Value = 30   │ ");
+            Console.WriteLine("    │  Next  ───────┼───▶ │  Next  ───────┼───▶ │  Next  = null │ ");
+            Console.WriteLine("    └───────────────┘     └───────────────┘     └───────────────┘ ");
+            Console.WriteLine("          Node A               Node B                Node C ");
+            Console.WriteLine("Кожен вузол містить власне значення і посилання на наступний вузол.");
+            Console.WriteLine("Щоразу, як ви бажаєте досягнути вузла за індексом, цикл \nпослідовно проходить по всіх вузлах списку, поки не досягне бажаного.");
+            Console.WriteLine("Спробуйте попрацювати з односпрямованими списками, обравши іншу опцію.");
+        }
         public static void BlueMessageCurrentList()
         {
             Console.ForegroundColor = ConsoleColor.Blue;
@@ -377,7 +393,7 @@ namespace _7oop
             while (currentUser == null)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("\nНаразі ще немає активного списку.");
+                Console.WriteLine("\nНаразі немає активного списку.");
                 Console.ResetColor();
                 Console.WriteLine("99 - Створити новий список");
                 Console.WriteLine("33 - Вибрати існуючий список");
