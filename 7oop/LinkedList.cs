@@ -28,7 +28,6 @@ namespace _7oop
             count = 0;
         }
 
-        // Додавання елемента в кінець списку
         public void Add(double value)
         {
             Node newNode = new Node(value);
@@ -56,7 +55,7 @@ namespace _7oop
             {
                 if (index < 0 || index >= count)
                 {
-                    throw new IndexOutOfRangeException("Індекс поза межами списку");
+                    throw new IndexOutOfRangeException("Індекс поза межами списку.");
                 }
 
                 Node current = head;
@@ -70,7 +69,7 @@ namespace _7oop
             {
                 if (index < 0 || index >= count)
                 {
-                    throw new IndexOutOfRangeException("Індекс поза межами списку");
+                    throw new IndexOutOfRangeException("Індекс поза межами списку.");
                 }
 
                 Node current = head;
@@ -86,7 +85,7 @@ namespace _7oop
         {
             if (head == null)
             {
-                Console.WriteLine("Список порожній");
+                Console.WriteLine("Список порожній.");
                 return;
             }
 
@@ -100,12 +99,11 @@ namespace _7oop
             }
         }
 
-        // Знаходження середнього значення елементів списку
         public double GetAverage()
         {
             if (head == null)
             {
-                throw new InvalidOperationException("Список порожній");
+                throw new InvalidOperationException("Список порожній.");
             }
 
             double sum = 0;
@@ -122,12 +120,11 @@ namespace _7oop
             return sum / count;
         }
 
-        // 1. Знайти перший елемент більший за середнє значення
         public double FindFirstGreaterThanAverage()
         {
             if (head == null)
             {
-                throw new InvalidOperationException("Список порожній");
+                throw new InvalidOperationException("Список порожній.");
             }
 
             double average = GetAverage();
@@ -142,18 +139,18 @@ namespace _7oop
                 current = current.Next;
             }
 
-            throw new InvalidOperationException("Не знайдено елементів більших за середнє значення");
+            throw new InvalidOperationException("Не знайдено елементів більших за середнє значення.");
         }
 
-        // 2. Знайти суму елементів, значення яких більше за задане
         public double SumOfElementsGreaterThan(double threshold)
         {
             if (head == null)
             {
-                throw new InvalidOperationException("Список порожній");
+                throw new InvalidOperationException("Список порожній.");
             }
 
             double sum = 0;
+            bool found = false;
             Node current = head;
 
             while (current != null)
@@ -161,14 +158,18 @@ namespace _7oop
                 if (current.Value > threshold)
                 {
                     sum += current.Value;
+                    found = true;
                 }
                 current = current.Next;
+            }
+            if (!found)
+            {
+                throw new InvalidOperationException("Жоден елемент не перевищує задане значення.");
             }
 
             return sum;
         }
 
-        // 3. Отримати новий список зі значень елементів менших за середнє значення
         public LinkedList GetNewListWithElementsLessThanAverage()
         {
             if (head == null)
@@ -192,7 +193,6 @@ namespace _7oop
             return newList;
         }
 
-        // 4. Видалити елементи, що розташовані на парних позиціях (нумерація починається з 0)
         public void RemoveElementsAtEvenPositions()
         {
             if (head == null)
@@ -207,7 +207,6 @@ namespace _7oop
                 count--;
             }
 
-            // Видаляємо решту елементів на парних позиціях
             Node current = head;
             int position = 1;
 
@@ -226,7 +225,6 @@ namespace _7oop
             }
         }
 
-        // Отримання кількості елементів у списку
         public int Count
         {
             get { return count; }
