@@ -329,6 +329,10 @@ namespace _7oop
                             }
                         }
                     }
+                    else
+                    {
+                        Console.WriteLine($"Елемента з індексом {index} не існує у даному списку.");
+                    }
                 }
                 catch (InvalidOperationException ex)
                 {
