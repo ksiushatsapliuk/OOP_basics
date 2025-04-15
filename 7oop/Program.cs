@@ -56,7 +56,7 @@ namespace _7oop
             Console.WriteLine("| 1.0 | --> | 2.0 | --> | 3.0 | --> | N.N |");
             Console.WriteLine("+-----+     +-----+     +-----+     +-----+");
             Console.WriteLine("\nДОСТУПНІ ОПЦІЇ:");
-            Console.WriteLine("0: додати числа до списку");
+            Console.WriteLine("0: додати числа до початку списку");
             Console.WriteLine("1: знайти перший елемент, більший за середнє значення");
             Console.WriteLine("2: знайти суму елементів, більших за задане значення");
             Console.WriteLine("3: отримати новий список з елементів, менших за середнє значення");
@@ -65,7 +65,7 @@ namespace _7oop
             Console.WriteLine("6: переглянути активний список");
             Console.WriteLine("7: створити новий список");
             Console.WriteLine("8: обрати інший активний список");
-            Console.WriteLine("9: що таке список?");
+            Console.WriteLine("9: що таке односпрямований список?");
             Console.WriteLine("ESC, щоб завершити");
             Console.ResetColor();
         }
@@ -115,7 +115,7 @@ namespace _7oop
                         SelectList();
                         break;
                     case 9:
-                        Console.WriteLine("9: довідка: що таке список?");
+                        Console.WriteLine("9: довідка: що таке односпрямований список?");
                         WhatIsLinkedList();
                         break;
 
@@ -367,6 +367,7 @@ namespace _7oop
             Console.WriteLine("          Node A               Node B                Node C ");
             Console.WriteLine("Кожен вузол містить власне значення і посилання на наступний вузол.");
             Console.WriteLine("Щоразу, як ви бажаєте досягнути вузла за індексом, цикл \nпослідовно проходить по всіх вузлах списку, поки не досягне бажаного.");
+            Console.WriteLine("У даній програмі елементи додаються на початок списку.");
             Console.WriteLine("Спробуйте попрацювати з односпрямованими списками, обравши іншу опцію.");
         }
         public static void BlueMessageCurrentList()

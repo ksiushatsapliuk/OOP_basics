@@ -38,12 +38,8 @@ namespace _7oop
             }
             else
             {
-                Node current = head;
-                while (current.Next != null)
-                {
-                    current = current.Next;
-                }
-                current.Next = newNode;
+                newNode.Next = head;
+                head = newNode;
             }
             count++;
         }
