@@ -257,13 +257,13 @@ namespace _7oop
                     {
                         userLists[newName] = LessThanAverage;
                         Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine($"✅ Список \"{newName}\" додано до вашої колекції.");
+                        Console.WriteLine($"Список \"{newName}\" додано до вашої колекції.");
                         Console.ResetColor();
                     }
                     else
                     {
                         Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.WriteLine($"⚠️ Список з ім’ям \"{newName}\" вже існує. Новий список **не був збережений**.");
+                        Console.WriteLine($"Список з ім’ям \"{newName}\" вже існує. Новий список **не був збережений**.");
                         Console.ResetColor();
                     }
                 }
@@ -440,13 +440,13 @@ namespace _7oop
                 userLists[name] = new LinkedList();
                 currentUser = name;
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine($"✅ Список \"{name}\" створено і вибрано як активний.");
+                Console.WriteLine($"Список \"{name}\" створено і вибрано як активний.");
                 Console.ResetColor();
             }
             else
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("⚠️ Список з таким ім'ям вже існує. Помилка створення.");
+                Console.WriteLine("Список з таким ім'ям вже існує. Помилка створення.");
                 Console.ResetColor();
             }
         }
@@ -455,7 +455,7 @@ namespace _7oop
             if (userLists.Count == 0)
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("⚠️ Наразі немає жодного списку. Спочатку створіть новий список.");
+                Console.WriteLine("Наразі немає жодного списку. Спочатку створіть новий список.");
                 Console.ResetColor();
                 return;
             }
@@ -478,13 +478,13 @@ namespace _7oop
             {
                 currentUser = name;
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine($"📌 Активний список: {name}");
+                Console.WriteLine($"Активний список: {name}");
                 Console.ResetColor();
             }
             else
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("❌ Список не знайдено.");
+                Console.WriteLine("Список не знайдено.");
                 Console.ResetColor();
             }
         }
