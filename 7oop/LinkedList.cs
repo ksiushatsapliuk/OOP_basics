@@ -44,7 +44,6 @@ namespace _7oop
             count++;
         }
 
-        //індексатор
         public double this[int index]
         {
             get
@@ -196,7 +195,6 @@ namespace _7oop
                 return;
             }
 
-            //випадок для голови списку (позиція 0)
             if (head != null)
             {
                 head = head.Next;
@@ -208,7 +206,7 @@ namespace _7oop
 
             while (current != null && current.Next != null)
             {
-                if (position % 2 == 1) //якщо попередня позиція непарна, то наступна - парна
+                if (position % 2 == 1)
                 {
                     current.Next = current.Next.Next;
                     count--;
@@ -219,6 +217,35 @@ namespace _7oop
                 }
                 position++;
             }
+        }
+        public void RemoveAt(int index)
+        {
+            if (head == null)
+            {
+                throw new InvalidOperationException("Список порожній.");
+            }
+
+            if (index < 0 || index >= count)
+            {
+                throw new ArgumentOutOfRangeException(nameof(index), "Індекс поза межами списку.");
+            }
+
+            if (index == 0)
+            {
+                head = head.Next;
+            }
+            else
+            {
+                Node current = head;
+                for (int i = 0; i < index - 1; i++)
+                {
+                    current = current.Next;
+                }
+
+                current.Next = current.Next?.Next;
+            }
+
+            count--;
         }
 
         public int Count

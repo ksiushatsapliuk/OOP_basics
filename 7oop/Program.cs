@@ -9,7 +9,7 @@ namespace _7oop
     class Program
     {
         static Dictionary<string, LinkedList> userLists = new Dictionary<string, LinkedList>();
-        static string? currentUser = null; //активний список
+        static string? currentUser = null;
         static readonly string defaultListName = "default";
 
         static void Main()
@@ -63,9 +63,9 @@ namespace _7oop
             Console.WriteLine("4: видалити елементи на парних позиціях у списку");
             Console.WriteLine("5: переглянути/змінити елемент за індексом");
             Console.WriteLine("6: переглянути активний список");
-            Console.WriteLine("7: створити новий список");
-            Console.WriteLine("8: обрати інший активний список");
-            Console.WriteLine("9: що таке односпрямований список?");
+            Console.WriteLine("7: видалити елемент списку за індексом");
+            Console.WriteLine("8: створити новий список");
+            Console.WriteLine("9: обрати інший активний список");
             Console.WriteLine("ESC, щоб завершити");
             Console.ResetColor();
         }
@@ -107,16 +107,16 @@ namespace _7oop
                         Case6_DisplayList(anylist);
                         break;
                     case 7:
-                        Console.WriteLine("7: Створити новий список");
-                        CreateNewList();
+                        Console.WriteLine("7: Видалити елемент списку за індексом");
+                        Case7_DeleteElementByIndex(anylist);
                         break;
                     case 8:
-                        Console.WriteLine("8: (Пере)Обрати активний список");
-                        SelectList();
+                        Console.WriteLine("8: Створити новий список");
+                        CreateNewList();
                         break;
                     case 9:
-                        Console.WriteLine("9: довідка: що таке односпрямований список?");
-                        WhatIsLinkedList();
+                        Console.WriteLine("9: (Пере)Обрати активний список");
+                        SelectList();
                         break;
 
                     default:
@@ -356,19 +356,37 @@ namespace _7oop
             Console.WriteLine($"\nВаш список \"{currentUser}\" містить:");
             list.PrintList();
         }
-        public static void WhatIsLinkedList()
+        public static void Case7_DeleteElementByIndex(LinkedList list)
         {
-            Console.WriteLine("\nОдноспрямований (однозв'язний) список — це структура даних, яка \nскладається з послідовно пов’язаних вузлів (Node).");
-            Console.WriteLine("");
-            Console.WriteLine("    ┌───────────────┐     ┌───────────────┐     ┌───────────────┐ ");
-            Console.WriteLine("    │  Value = 10   │     │  Value = 20   │     │  Value = 30   │ ");
-            Console.WriteLine("    │  Next  ───────┼───▶ │  Next  ───────┼───▶ │  Next  = null │ ");
-            Console.WriteLine("    └───────────────┘     └───────────────┘     └───────────────┘ ");
-            Console.WriteLine("          Node A               Node B                Node C ");
-            Console.WriteLine("Кожен вузол містить власне значення і посилання на наступний вузол.");
-            Console.WriteLine("Щоразу, як ви бажаєте досягнути вузла за індексом, цикл \nпослідовно проходить по всіх вузлах списку, поки не досягне бажаного.");
-            Console.WriteLine("У даній програмі елементи додаються на початок списку.");
-            Console.WriteLine("Спробуйте попрацювати з односпрямованими списками, обравши іншу опцію.");
+            BlueMessageCurrentList();
+            if (list.Count == 0)
+            {
+                RedMessageListIsEmpty();
+                return;
+            }
+            Console.WriteLine("Вміст списку:");
+            list.PrintList();
+            Console.Write("Введіть індекс елемента, який потрібно видалити: ");
+            if (int.TryParse(Console.ReadLine(), out int index))
+            {
+                try
+                {
+                    list.RemoveAt(index);
+                    Console.WriteLine("Елемент успішно видалено.");
+                    Console.WriteLine("Список після видалення:");
+                    list.PrintList();
+                }
+                catch (InvalidOperationException ex)
+                {
+                    RedMessageException(ex);
+                }
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Некоректний ввід індексу.");
+                Console.ResetColor();
+            }
         }
         public static void BlueMessageCurrentList()
         {
