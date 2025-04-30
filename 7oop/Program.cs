@@ -63,7 +63,7 @@ namespace _7oop
             Console.WriteLine("2: знайти суму елементів, більших за задане значення");
             Console.WriteLine("3: отримати новий список з елементів, менших за середнє значення");
             Console.WriteLine("4: видалити елементи на парних позиціях у списку");
-            Console.WriteLine("5: переглянути/змінити елемент за індексом");
+            Console.WriteLine("5: переглянути елемент за індексом");
             Console.WriteLine("6: переглянути активний список");
             Console.WriteLine("7: видалити елемент списку за індексом");
             Console.WriteLine("8: створити новий список");
@@ -98,7 +98,7 @@ namespace _7oop
                         break;
                     case 4:
                         Console.WriteLine("4: Видалити елементи на парних позиціях у списку");
-                        Case4_RemoveElementsAtEvenPositions(anylist);
+                        Case4_RemoveAtEvenPositions(anylist);
                         break;
                     case 5:
                         Console.WriteLine("5: Переглянути елемент за індексом");
@@ -218,7 +218,7 @@ namespace _7oop
                     Console.Write("\nВведіть порогове значення для суми: ");
                     if (double.TryParse(Console.ReadLine().Replace('.', ','), out double threshold))
                     {
-                        double sum = list.SumOfElementsGreaterThan(threshold);
+                        double sum = list.SumOfElementsGreater(threshold);
                         Console.WriteLine($"Сума елементів більших за {threshold:F2}: {sum:F2}");
                     }
                     else
@@ -248,7 +248,7 @@ namespace _7oop
                     double average = list.GetAverage();
                     Console.WriteLine($"\nСереднє значення: {average:F2}");
 
-                    LinkedList LessThanAverage = list.GetNewListWithElementsLessThanAverage();
+                    LinkedList LessThanAverage = list.GetNewWithElementsLessThanAverage();
                     Console.WriteLine("Новий список з елементів менших за середнє значення:");
                     PrintList(LessThanAverage);
 
@@ -279,7 +279,7 @@ namespace _7oop
                 RedMessageListIsEmpty();
             } 
         }
-        public static void Case4_RemoveElementsAtEvenPositions(LinkedList list)
+        public static void Case4_RemoveAtEvenPositions(LinkedList list)
         {
             BlueMessageCurrentList();
 
@@ -288,7 +288,7 @@ namespace _7oop
                 try
                 {
                     Console.WriteLine("\nСписок після видалення елементів на парних позиціях:");
-                    list.RemoveElementsAtEvenPositions();
+                    list.RemoveAtEvenPositions();
                     PrintList(list);
                     Console.ForegroundColor = ConsoleColor.DarkGray;
                     Console.WriteLine($"Примітка: тепер ваш список \"{currentUser}\" містить лише ці елементи");

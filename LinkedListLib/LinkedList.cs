@@ -33,7 +33,7 @@
                 {
                     if (index < 0 || index >= count)
                     {
-                        throw new IndexOutOfRangeException("Індекс поза межами списку.");
+                        throw new IndexOutOfRangeException("Index out of range.");
                     }
 
                     Node current = head;
@@ -49,7 +49,7 @@
             {
                 if (head == null)
                 {
-                    throw new InvalidOperationException("Список порожній.");
+                    throw new InvalidOperationException("List is empty.");
                 }
 
                 double sum = 0;
@@ -70,7 +70,7 @@
             {
                 if (head == null)
                 {
-                    throw new InvalidOperationException("Список порожній.");
+                    throw new InvalidOperationException("List is empty.");
                 }
 
                 double average = GetAverage();
@@ -85,14 +85,14 @@
                     current = current.Next;
                 }
 
-                throw new InvalidOperationException("Не знайдено елементів більших за середнє значення.");
+                throw new InvalidOperationException("No elements found greater than the average value.");
             }
 
-            public double SumOfElementsGreaterThan(double threshold)
+            public double SumOfElementsGreater(double threshold)
             {
                 if (head == null)
                 {
-                    throw new InvalidOperationException("Список порожній.");
+                    throw new InvalidOperationException("List is empty.");
                 }
 
                 double sum = 0;
@@ -110,17 +110,17 @@
                 }
                 if (!found)
                 {
-                    throw new InvalidOperationException("Жоден елемент списку не перевищує задане значення.");
+                    throw new InvalidOperationException("No element in the list exceeds the given value.");
                 }
 
                 return sum;
             }
 
-            public LinkedList GetNewListWithElementsLessThanAverage()
+            public LinkedList GetNewWithElementsLessThanAverage()
             {
                 if (head == null)
                 {
-                    throw new InvalidOperationException("Список порожній");
+                    throw new InvalidOperationException("List is empty");
                 }
 
                 double average = GetAverage();
@@ -139,7 +139,7 @@
                 return newList;
             }
 
-            public void RemoveElementsAtEvenPositions()
+            public void RemoveAtEvenPositions()
             {
                 if (head == null)
                 {
@@ -173,12 +173,12 @@
             {
                 if (head == null)
                 {
-                    throw new InvalidOperationException("Список порожній.");
+                    throw new InvalidOperationException("List is empty.");
                 }
 
                 if (index < 0 || index >= count)
                 {
-                    throw new ArgumentOutOfRangeException(nameof(index), "Індекс поза межами списку.");
+                    throw new ArgumentOutOfRangeException(nameof(index), "Index out of range.");
                 }
 
                 if (index == 0)
