@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
+using LinkedListLib;
 
 namespace _7oop
 {
@@ -99,7 +101,7 @@ namespace _7oop
                         Case4_RemoveElementsAtEvenPositions(anylist);
                         break;
                     case 5:
-                        Console.WriteLine("5: Переглянути/Змінити елемент за індексом");
+                        Console.WriteLine("5: Переглянути елемент за індексом");
                         Case5_ViewOrEditElementByIndex(anylist);
                         break;
                     case 6:
@@ -173,7 +175,7 @@ namespace _7oop
                 }
             } 
             Console.WriteLine("\nВаш список:");
-            list.PrintList();
+            PrintList(list);
         }
         public static void Case1_FindFirstGreaterThanAverage(LinkedList list)
         {
@@ -248,7 +250,7 @@ namespace _7oop
 
                     LinkedList LessThanAverage = list.GetNewListWithElementsLessThanAverage();
                     Console.WriteLine("Новий список з елементів менших за середнє значення:");
-                    LessThanAverage.PrintList();
+                    PrintList(LessThanAverage);
 
                     Console.Write("\nВведіть ім’я для нового списку, щоб зберегти: ");
                     string newName = Console.ReadLine();
@@ -287,7 +289,7 @@ namespace _7oop
                 {
                     Console.WriteLine("\nСписок після видалення елементів на парних позиціях:");
                     list.RemoveElementsAtEvenPositions();
-                    list.PrintList();
+                    PrintList(list);
                     Console.ForegroundColor = ConsoleColor.DarkGray;
                     Console.WriteLine($"Примітка: тепер ваш список \"{currentUser}\" містить лише ці елементи");
                     Console.ResetColor();
@@ -314,24 +316,6 @@ namespace _7oop
                     if (int.TryParse(Console.ReadLine(), out int index) && index >= 0 && index < list.Count)
                     {
                         Console.WriteLine($"Елемент з індексом {index}: {list[index]}");
-
-                        Console.WriteLine("Змінити значення цього елемента? (+ так, - ні)");
-                        string choice = Console.ReadLine();
-
-                        if (choice == "+")
-                        {
-                            Console.Write("Введіть нове значення для цього елемента: ");
-                            if (double.TryParse(Console.ReadLine().Replace('.', ','), out double changedValue))
-                            {
-                                list[index] = changedValue;
-                                Console.WriteLine("Список після зміни елемента:");
-                                list.PrintList();
-                            }
-                            else
-                            {
-                                Console.WriteLine("Невірний формат числа. Зміни не внесено.");
-                            }
-                        }
                     }
                     else
                     {
@@ -354,7 +338,7 @@ namespace _7oop
         {
             BlueMessageCurrentList();
             Console.WriteLine($"\nВаш список \"{currentUser}\" містить:");
-            list.PrintList();
+            PrintList(list);
         }
         public static void Case7_DeleteElementByIndex(LinkedList list)
         {
@@ -365,7 +349,7 @@ namespace _7oop
                 return;
             }
             Console.WriteLine("Вміст списку:");
-            list.PrintList();
+            PrintList(list);
             Console.Write("Введіть індекс елемента, який потрібно видалити: ");
             if (int.TryParse(Console.ReadLine(), out int index))
             {
@@ -374,7 +358,7 @@ namespace _7oop
                     list.RemoveAt(index);
                     Console.WriteLine("Елемент успішно видалено.");
                     Console.WriteLine("Список після видалення:");
-                    list.PrintList();
+                    PrintList(list);
                 }
                 catch (InvalidOperationException ex)
                 {
@@ -391,7 +375,7 @@ namespace _7oop
         public static void BlueMessageCurrentList()
         {
             Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine($"🔍 Поточний список: \"{currentUser}\"");
+            Console.WriteLine($"Поточний список: \"{currentUser}\"");
             Console.ResetColor();
         }
         public static void RedMessageListIsEmpty()
@@ -406,7 +390,19 @@ namespace _7oop
             Console.WriteLine(ex.Message);
             Console.ResetColor();
         }
+        public static void PrintList(LinkedList list)
+        {
+            if (list.Count == 0)
+            {
+                Console.WriteLine("Список порожній.");
+                return;
+            }
 
+            for (int i = 0; i < list.Count; i++)
+            {
+                Console.WriteLine($"[{i}] = {list[i]}");
+            }
+        }
         public static void IFListIsChosen()
         {
             while (currentUser == null)
