@@ -1,7 +1,9 @@
-﻿namespace LinkedListLib
+﻿using System.Collections;
+
+namespace LinkedListLib
 {
-        public class LinkedList
-        {
+        public class LinkedList : IEnumerable<double>
+    {
             private Node head;
             private int count;
 
@@ -203,5 +205,20 @@
             {
                 get { return count; }
             }
+            public IEnumerator<double> GetEnumerator()
+            {
+                Node current = head;
+                while (current != null)
+                {
+                    yield return current.Value;
+                    current = current.Next;
+                }
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return GetEnumerator();
+            }
+
         }
 }

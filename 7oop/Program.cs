@@ -364,6 +364,12 @@ namespace _7oop
                 {
                     RedMessageException(ex);
                 }
+                catch (ArgumentOutOfRangeException ex)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine($"Елемента з індексом {index} не існує у даному списку.");
+                    Console.ResetColor();
+                }
             }
             else
             {
@@ -398,9 +404,11 @@ namespace _7oop
                 return;
             }
 
-            for (int i = 0; i < list.Count; i++)
+            int index = 0;
+            foreach (double value in list)
             {
-                Console.WriteLine($"[{i}] = {list[i]}");
+                Console.WriteLine($"[{index}] = {value}");
+                index++;
             }
         }
         public static void IFListIsChosen()
